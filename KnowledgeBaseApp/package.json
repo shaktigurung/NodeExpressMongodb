@@ -1,0 +1,14 @@
+{
+  "name": "knowledgebaseapp",
+  "version": "1.0.0",
+  "description": "knowledgebase app",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app"
+  },
+  "author": "Shakti Gurung",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
