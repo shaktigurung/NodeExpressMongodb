@@ -2,6 +2,14 @@ const express = require("express");
 const router = express.Router();
 const ProductController = require('./../controllers/product_controller');
 
+router.use("/products/:id", async(req, res, next)=>{
+    if(req.params.id){
+        let product = await ProductModel.findById(req.params.id);
+        req.product = product;
+    }
+    next();
+});
+
 router.get("/products", ProductController.index);
 
 router.post("/products", ProductController.create);
