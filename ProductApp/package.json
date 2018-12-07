@@ -2,15 +2,16 @@
   "name": "productapp",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "forever -c \"nodemon --exitcrash -L \" app.js"
+    "server": "forever -c \"nodemon --exitcrash -L \" server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "mongoose": "^5.3.15"
   },
   "devDependencies": {
     "forever": "^0.15.3",
