@@ -2,6 +2,7 @@ const express = require('express');
 const exphbs = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const methodOverride = require('method-override');
 
 const app = express();
 const port = 3000;
@@ -14,6 +15,9 @@ mongoose.connection.on("Error", err => console.log(err));
 //Setup Handle-bars
 app.engine("handlebars", exphbs({defaultLayout: "main"}));
 app.set("view engine", "handlebars");
+
+// Method override with POST having ?_method=DELETE
+app.use(methodOverride('_method', {methods: ['POST', 'GET']}));
 
 //Body-parser as middleware
 app.use(bodyParser.urlencoded({extended: false}));

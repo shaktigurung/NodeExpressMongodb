@@ -1,25 +1,47 @@
-function create(req, res){
+const AuthorModel = require("./../database/models/author_model");
+
+async function create(req, res){
     //logic for creating a resource
+    let {name, bio, gender} = req.body;
+    let author = await AuthorModel.create({name, bio, gender})  
+        .catch(err => res.status(500).send(err));
+    res.redirect(`/authors/${author._id}`);
 }
-function index(req, res){
+async function index(req, res){
     // showed a list of all the resources
+   let authors = await AuthorModel.find();
+   res.render("author/index", {authors});
 }
 function make(req, res){
     // shows the form to create the resource
+    res.render("author/new");
 }
-function destroy(req, res){
+async function destroy(req, res){
     //Deletes the resource
+    let {id} = req.params;
+    await AuthorModel.findByIdAndRemove(id);
+    res.redirect("/authors");
 }
-function show(req, res){
+async function show(req, res){
     //shows a single resource
+    let {id} = req.params;
+    let author = await AuthorModel.findById(id);
+    res.render("author/show", {author});
 }
 
-function update(req, res){
+async function update(req, res){
     //updates the resource
+    let {name, bio, gender} = req.body;
+    let {id} = req.params;
+    await AuthorModel.findByIdAndUpdate(id, {name, bio, gender});
+    res.redirect(`/authors/${id}`);
 
 }
-function edit(req, res){
+async function edit(req, res){
     //shows the form to edit the resource
+    let {id} = req.params;
+    let author = await AuthorModel.findById(id);
+    res.render("author/edit", {author});
 }
 
 module.exports = {
