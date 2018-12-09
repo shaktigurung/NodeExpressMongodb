@@ -19,6 +19,8 @@ app.set("view engine", "handlebars");
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 
+//Routes
+app.use(require("./routes"));
 
 //Server
 app.listen(port, ()=>{
