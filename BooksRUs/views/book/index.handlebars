@@ -1,0 +1,14 @@
+<h1>All Books</h1>
+
+{{#each books}}
+
+<div>
+    <p> Name: {{this.name}}</p>
+    <p> Bio: {{this.bio}}</p>
+    <p> Gender: {{this.gender}}</p>
+</div>
+<a href="/books/{{this._id}}">Show</a>
+<a href="/books/{{this._id}}/EDIT">Edit</a>
+<a href="/books/{{this._id}}?_method=DELETE">Delete</a>
+<hr/>
+{{/each}}
